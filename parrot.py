@@ -1,14 +1,14 @@
 import time
 class Budget:
-    def __init__(self, category):
-        self.name = category
-        self.balance = 7000
-        self.expenditure = 0
+    def __init__(self, category, balance):
+        self.category = category
+        self.balance = balance
+        
         
     def userOptions(self):
         print(":::::::::: Parrot's_Budget_App.py :::::::::: \n")
         print(":::::::::: Below Is Our Category Menu ::::::::::")
-        print("1. Withdraw From Budget\n2. Deposit To Budget\n3. Check Budget Balance\n4. Exit\n")
+        print("1. Withdraw From Budget\n2. Deposit To Budget\n3. Check Budget Balance\n4. Transfer To A Different Budget\n5. Exit\n")
         selectOption = int(input("::::::: Please Select An Option :::::::\n"))
         
         while True:
@@ -24,7 +24,7 @@ class Budget:
                 time.sleep(3)
                 self.accountBalance()
                 break
-            elif selectOption == 4:
+            elif selectOption == 5:
                 time.sleep(3)
                 self.exit()
                 break
@@ -48,18 +48,26 @@ class Budget:
             self.withdraw()
             
     def deposit(self):
-        amount = int(input(f"({self.name}) HOw much Would YOu Like To Deposit?? \n "))
+        amount = int(input(f"({self.category}) HOw much Would YOu Like To Deposit?? \n "))
         self.balance += amount
-        print(f"€{amount} added to {self.name}")
-        total = amount + self.balance
-        print("Your Current Budget Balance Is %s" %total)
+        print(f"{amount} added to {self.category}")
         self.done()
         
         
     def accountBalance(self):
-        print(f"{self.name} have {self.balance}")
+        print(f"{self.category} have {self.balance}")
         print(self.balance)
         self.done()
+        
+    def transferFunds(self):
+        where = int(input("Where do you Wish To Transfer To?? \n1.Food /n2. Clothing \n3. Entertainment \n"))
+        if where == 1 or 2 or 3:
+            self.category 
+        else:
+            print("You Have Selected An Invalid Option")
+            self.transferFunds()
+            
+        howMuch = int(input("How Much Do You Wish To Transfer "))
     
     def exit(self):
             print(":::::::::: Have A Nice Day ::::::::::")
@@ -75,30 +83,31 @@ class Budget:
             self.done()
               
             
-food = Budget("Food")
-clothing = Budget("Clothing")
-entertainment = Budget("Entertainment")
+food = Budget("Food", 20000)
+clothing = Budget("Clothing", 15000)
+entertainment = Budget("Entertainment", 1000)
 
 print(":::::::::: Welcome To Parrot's Python Budget App ::::::::::")
 print("")
 print("Category List \n 1. Food \n 2. Clothing \n 3. Entertainment \n")
 category = int(input("Please Select A Category: "))
-
 while True:
     if category == 1:
-        print (f"\n({food.name})")
+        print (f"\n({food.category})")
         food.userOptions()
         break
     elif category == 2:
-        print(f"\n({clothing.name})")
+        print(f"\n({clothing.category})")
         clothing.userOptions()
         break
     elif category == 3:
-        print(f"\n({entertainment.name})")
+        print(f"\n({entertainment.category})")
         entertainment.userOptions()
         break               
     else:
         print("Invalid Option Selected")
         print(category)
-        
-        
+
+    
+
+
