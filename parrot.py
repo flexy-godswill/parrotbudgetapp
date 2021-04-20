@@ -13,24 +13,28 @@ class Budget:
         
         while True:
             if selectOption == 1:
-                time.sleep(3)
+                time.sleep(1.2)
                 self.withdraw()
                 break
             elif selectOption == 2:
-                time.sleep(3)
+                time.sleep(1.2)
                 self.deposit()
                 break
             elif selectOption == 3:
-                time.sleep(3)
+                time.sleep(1.2)
                 self.accountBalance()
                 break
+            elif selectOption == 4:
+                time.sleep(1.2)
+                self.transferFunds()
+                break
             elif selectOption == 5:
-                time.sleep(3)
-                self.exit()
+                time.sleep(1.2)
+                
                 break
                             
             else:
-                print("Invalid Option Selected, Please Select A Valid Option")
+                print("Invalid Option Selected, Please Select A Valid Option\n")
                 print(selectOption)
                 continue
      
@@ -38,13 +42,13 @@ class Budget:
         withdrew = int(input("How Much Would You Like TO Withdraw??\n"))
         if (withdrew < self.balance):
             amt = self.balance - withdrew
-            print("You Have Successfully Withdrew %s From Your Account" %withdrew)
+            print("You Have Successfully Withdrew %s From Your Account\n" %withdrew)
             print(":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::")
             print("Your Current Balance is %s" %amt)
             self.done()
         elif (withdrew > self.balance):
             print("Your Balance Is Too Low For The Amount You Want To Withdraw \n Please Try To Withdraw Lesser Than Your Balance")
-            time.sleep(3)
+            time.sleep(1.5)
             self.withdraw()
             
     def deposit(self):
@@ -56,19 +60,25 @@ class Budget:
         
     def accountBalance(self):
         print(f"{self.category} have {self.balance}")
-        print(self.balance)
         self.done()
         
     def transferFunds(self):
-        where = int(input("Where do you Wish To Transfer To?? \n1.Food /n2. Clothing \n3. Entertainment \n"))
-        if where == 1 or 2 or 3:
-            self.category 
+        where = int(input("Where do you Wish To Transfer To?? \n1. Food \n2. Clothing \n3. Entertainment \n"))
+        if where == 1 or where == 2 or where == 3:
+            howMuch = int(input("How Much Do You Wish To Transfer?? \n"))
+            if howMuch < self.balance:
+                destinate = howMuch + self.balance 
+                print(f"You Have Successfully Transferred %s To {self.category}" %howMuch)
+                self.balance -= howMuch
+                print(f"{self.category} Has %s" %self.balance)
+                self.done()
+            elif howMuch > self.balance:
+                print("You Balance Is Too Low To Make This Transfer")
         else:
             print("You Have Selected An Invalid Option")
             self.transferFunds()
             
-        howMuch = int(input("How Much Do You Wish To Transfer "))
-    
+            
     def exit(self):
             print(":::::::::: Have A Nice Day ::::::::::")
     
